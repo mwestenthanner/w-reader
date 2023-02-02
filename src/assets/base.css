@@ -1,0 +1,40 @@
+/* FONTS */
+@font-face {
+  font-family: "Inter";
+  src: local("Inter"),
+   url('./fonts/Inter-Regular.ttf') format("truetype");
+   font-weight: 400;
+   font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: local("Inter"),
+   url('./fonts/Inter-Medium.ttf') format("truetype");
+  font-weight: medium;
+  font-style: 500;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: local("Inter"),
+   url('./fonts/Inter-Bold.ttf') format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* COLOR VARIABLES */
+:root {
+  --background: #181818;
+  --text-primary: #d9d9d9;
+  --text-secondary: #808080;
+  --accent-primary: rgb(255, 187, 138);
+  --accent-secondary: rgb(238, 134, 59);
+}
+
+/* BODY */
+body {
+  font-family: 'Inter', 'Segoe-UI', sans-serif;
+  background-color: var(--background);
+  color: var(--text-primary);
+}
