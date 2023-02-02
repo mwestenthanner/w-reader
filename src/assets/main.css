@@ -11,6 +11,45 @@ a {
   transition: 0.4s;
 }
 
+input, textarea {
+  background-color: var(--background);
+  border: none;
+  border-bottom: 1px solid var(--text-primary);
+  padding: 0.8rem;
+}
+
+input::placeholder,
+textarea::placeholder {
+  font-family: 'Inter';
+}
+
+input,
+textarea {
+  font-family: 'Inter';
+  color: var(--text-primary);
+}
+
+.multiselect {
+  border-bottom: 1px solid var(--text-primary);
+}
+
+.multiselect.is-active {
+  border-radius: 3px;
+}
+
+.multiselect-tags-search {
+  color: var(--text-primary);
+}
+
+button {
+  font-family: 'Inter';
+  color: var(--background); 
+  background-color: var(--accent-primary);
+  border: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
 @media (hover: hover) {
   a:hover {
     color: var(--accent-secondary);

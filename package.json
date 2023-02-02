@@ -10,6 +10,7 @@
     "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
+    "@vueform/multiselect": "^2.5.8",
     "axios": "^1.2.6",
     "pinia": "^2.0.28",
     "vue": "^3.2.45",

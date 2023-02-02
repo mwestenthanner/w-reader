@@ -32,6 +32,21 @@
   --accent-secondary: rgb(238, 134, 59);
 }
 
+/* VUEFORM COLOR VARIABLES */
+:root {
+  --ms-bg: var(--background);
+  --ms-dropdown-bg: var(--background);
+  --ms-option-bg-pointed: var(--background);
+  --ms-border-color: transparent;
+  --ms-tag-bg: var(--accent-primary);
+  --ms-tag-color: var(--background);
+  --ms-radius: 0;
+  --ms-ring-width: 1px;
+  --ms-ring-color: var(--text-primary);
+  --ms-option-color-pointed: var(--text-primary);
+  --ms-placeholder-color: var(--text-secondary);
+}
+
 /* BODY */
 body {
   font-family: 'Inter', 'Segoe-UI', sans-serif;
