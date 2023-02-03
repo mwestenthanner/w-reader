@@ -40,6 +40,7 @@
   --ms-option-bg-pointed: var(--background);
   --ms-border-color: transparent;
   --ms-tag-bg: var(--accent-primary);
+  --ms-tag-font-weight: 400;
   --ms-tag-color: var(--background);
   --ms-radius: 0.5rem;
   --ms-ring-width: 1px;

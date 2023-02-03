@@ -9,6 +9,22 @@ const { tags } = storeToRefs(useWallabagStore())
 
 const contentType = ref('Content');
 const selectedTags = ref();
+const link = ref();
+
+function pasteFromClipboard() {
+  navigator.clipboard.readText().then((text) => {
+    link.value = text;
+  });
+}
+
+function isValidUrl() {
+  try {
+    new URL(link.value);
+    return true;
+  } catch (err) {
+    return false;
+  }
+}
 </script>
 
 <template>
@@ -25,7 +41,9 @@ const selectedTags = ref();
         <input type="radio" id="note" name="ContentType" v-model="contentType" value="Note">
         <label for="note">Save note</label>
     </fieldset>
-    <input type="text" placeholder="Link" />
+    <div class="link">
+        <input class="link-input" type="text" placeholder="Link" v-model="link" /><span class="paste-from-clipboard" @click="pasteFromClipboard()">📋</span>
+    </div>
     <textarea placeholder="Note" v-if="contentType == 'Note'" />
     <Multiselect
         v-model="selectedTags"
@@ -79,18 +97,36 @@ const selectedTags = ref();
     color: var(--background);
 }
 
-input[type="text"], textarea {
-    width: 90%;
+textarea {
     margin-top: 1rem;    
+    height: 200px;
+    width: 90%;
 }
 
-textarea {
-    height: 200px;
+.link {
+    display: grid;
+    grid-template-columns: 1fr 2.5rem;
+    margin-top: 1rem;    
+    width: 100%;
+    grid-gap: 0.2rem;
+}
+
+.link-input {
+    border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.paste-from-clipboard {
+    background-color: var(--accent-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 0.5rem 0.5rem 0;
 }
 
 .multiselect {
     margin-top: 1rem;
-    font-size: 80%;
+    font-size: 100%;
+    font-weight: 400;
 }
 
 button {
