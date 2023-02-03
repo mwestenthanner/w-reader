@@ -17,6 +17,7 @@ const article = computed(() => store.getEntryById(+articleId));
         </div>
         <div>
             <span>🤍</span>
+            <span>✏️</span>
             <span>🔗</span>
         </div>
     </header>

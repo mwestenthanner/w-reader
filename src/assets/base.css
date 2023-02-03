@@ -26,6 +26,7 @@
 /* COLOR VARIABLES */
 :root {
   --background: #181818;
+  --background-secondary: #262626;
   --text-primary: #d9d9d9;
   --text-secondary: #808080;
   --accent-primary: rgb(255, 187, 138);
@@ -34,13 +35,13 @@
 
 /* VUEFORM COLOR VARIABLES */
 :root {
-  --ms-bg: var(--background);
+  --ms-bg: var(--background-secondary);
   --ms-dropdown-bg: var(--background);
   --ms-option-bg-pointed: var(--background);
   --ms-border-color: transparent;
   --ms-tag-bg: var(--accent-primary);
   --ms-tag-color: var(--background);
-  --ms-radius: 0;
+  --ms-radius: 0.5rem;
   --ms-ring-width: 1px;
   --ms-ring-color: var(--text-primary);
   --ms-option-color-pointed: var(--text-primary);

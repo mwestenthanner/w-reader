@@ -12,10 +12,12 @@ a {
 }
 
 input, textarea {
-  background-color: var(--background);
+  background-color: var(--background-secondary);
   border: none;
-  border-bottom: 1px solid var(--text-primary);
+  border-radius: 0.5rem;
   padding: 0.8rem;
+  font-family: 'Inter';
+  color: var(--text-primary);
 }
 
 input::placeholder,
@@ -23,18 +25,8 @@ textarea::placeholder {
   font-family: 'Inter';
 }
 
-input,
-textarea {
-  font-family: 'Inter';
-  color: var(--text-primary);
-}
-
-.multiselect {
-  border-bottom: 1px solid var(--text-primary);
-}
-
-.multiselect.is-active {
-  border-radius: 3px;
+textarea{
+  resize: none;
 }
 
 .multiselect-tags-search {
