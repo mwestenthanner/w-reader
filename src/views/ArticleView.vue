@@ -18,7 +18,6 @@ const article = computed(() => store.getEntryById(+articleId));
         <div>
             <span>🤍</span>
             <span>✏️</span>
-            <span>🔗</span>
         </div>
     </header>
     <h2>{{ article?.title }}</h2>

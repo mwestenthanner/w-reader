@@ -29,8 +29,8 @@
   --background-secondary: #262626;
   --text-primary: #d9d9d9;
   --text-secondary: #808080;
-  --accent-primary: rgb(255, 187, 138);
-  --accent-secondary: rgb(238, 134, 59);
+  --accent-primary: rgb(138, 218, 255);
+  --accent-secondary: rgb(52, 161, 211);
   --error: rgb(226, 83, 83);
 }
 
