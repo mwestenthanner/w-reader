@@ -33,6 +33,29 @@ async function getEntries() {
     }
 }
 
+// URL is required for Wallabag to save the entry. Title and content are required for saving custom content.
+async function addEntry(url: string, title?:string, content?: string, tags?: Array<string>) {
+    const config = {
+        headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` }
+    };
+
+    const body = {
+        url: url,
+        title: title || '',
+        tags: tags?.toString() || '',
+        content: content || ''
+    }
+
+    try {
+        const res = await axios.post(apiUrl + 'entries', body, config);
+        return res;
+    } catch (err) {
+        await refresh()
+        const res = await axios.post(apiUrl + 'entries', body, config);
+        return res.data;
+    }
+}
+
 async function refresh() {
     try {
         await refreshToken()
@@ -43,5 +66,6 @@ async function refresh() {
 
 export {
     getTags,
-    getEntries
+    getEntries,
+    addEntry
 }

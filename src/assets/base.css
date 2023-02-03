@@ -31,6 +31,7 @@
   --text-secondary: #808080;
   --accent-primary: rgb(255, 187, 138);
   --accent-secondary: rgb(238, 134, 59);
+  --error: rgb(226, 83, 83);
 }
 
 /* VUEFORM COLOR VARIABLES */

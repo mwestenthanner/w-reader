@@ -4,12 +4,18 @@ import Multiselect from '@vueform/multiselect';
 import { storeToRefs } from 'pinia';
 import { useWallabagStore } from '@/stores/index'
 import { toOptions } from '@/utils/multiselect'
+import ErrorMessage from '@/components/ErrorMessage.vue';
 
-const { tags } = storeToRefs(useWallabagStore())
+const store = useWallabagStore();
+const { tags } = storeToRefs(store);
 
 const contentType = ref('Content');
 const selectedTags = ref();
 const link = ref();
+const title = ref();
+const note = ref();
+
+const errorMessage = ref();
 
 function pasteFromClipboard() {
   navigator.clipboard.readText().then((text) => {
@@ -24,6 +30,28 @@ function isValidUrl() {
   } catch (err) {
     return false;
   }
+}
+
+function saveArticle() {
+
+    // validate link
+    if (!isValidUrl()) {
+        errorMessage.value = "Please enter a valid URL."
+    } else
+
+    // if content type is note, note content and title are required
+    if (contentType.value == 'Note' && (!title.value || !note.value)) {
+        errorMessage.value = "To save a note with your URL, you need to enter a title and a note."
+    } else {
+        errorMessage.value = ''
+        // if content type is note, add "note" to tags
+        if (contentType.value == 'Note') {
+            selectedTags.value.push('note');
+        }
+
+        // send data to Wallabag
+        store.addEntryToStore(link.value, title.value, note.value, selectedTags.value)
+    }
 }
 </script>
 
@@ -44,7 +72,8 @@ function isValidUrl() {
     <div class="link">
         <input class="link-input" type="text" placeholder="Link" v-model="link" /><span class="paste-from-clipboard" @click="pasteFromClipboard()">📋</span>
     </div>
-    <textarea placeholder="Note" v-if="contentType == 'Note'" />
+    <input class="title-input" type="text" placeholder="Title - pre-populate from link" v-model="title" />
+    <textarea placeholder="Note" v-if="contentType == 'Note'" v-model="note" />
     <Multiselect
         v-model="selectedTags"
         mode="tags"
@@ -54,10 +83,11 @@ function isValidUrl() {
         :searchable="true"
         :create-option="true"
     />
-    <button>
+    <button @click="saveArticle()">
         <svg class="feather feather-download" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
         <span>Save link</span>
     </button>
+    <ErrorMessage :msg="errorMessage" v-if="errorMessage" />
 </main>
 </template>
 
@@ -121,6 +151,11 @@ textarea {
     align-items: center;
     justify-content: center;
     border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.title-input {
+    margin-top: 1rem; 
+    width: 90%;
 }
 
 .multiselect {

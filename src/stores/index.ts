@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { getEntries, getTags } from '@/api'
+import { addEntry, getEntries, getTags } from '@/api'
 
 export const useWallabagStore = defineStore('store', () => {
   const tags = ref([
@@ -28,11 +28,17 @@ export const useWallabagStore = defineStore('store', () => {
     return entries.value.find(item => item.id === id);
   }
 
+  function addEntryToStore(url: string, title?:string, content?: string, tags?: Array<string>) {
+    addEntry(url, title, content, tags);
+    setEntriesInStore()
+  }
+
   return {
     tags,
     entries,
     setTagsInStore,
     setEntriesInStore,
-    getEntryById
+    getEntryById,
+    addEntryToStore
   }
 })
